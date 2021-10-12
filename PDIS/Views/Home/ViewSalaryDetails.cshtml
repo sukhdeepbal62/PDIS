@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PDIS.Models.Salary>
+
+@{
+    ViewData["Title"] = "ViewSalaryDetails";
+}
+
+<div class="text-center">
+    <h1 class="display-4 font-text">All Salary History</h1>
+</div>
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4  mb-3">
+            <div class="card-body shadow border  border-dark col-md-12">
+                <p class="card-text">@item.SalaryMonth of @item.SalaryYear</p>
+                <p class="card-text"> Total Salary: $ @item.TotalSalary</p>
+                <div class="row mb-2">
+                    <div class="col-md-12 text-center">
+                        <a asp-action="ViewSalarySlip" class="btn btn-outline-dark " asp-route-id="@item.SalaryID"><i class="fa fa-eye"></i> Details</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+

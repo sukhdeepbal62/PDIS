@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PDIS.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4 font-text">All Employees</h1>
+</div>
+
+<p>
+    <a class="btn btn-outline-dark" asp-action="Create"><i class="fa fa-paper-plane"></i> Add New Employee</a>
+</p>
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4  mb-3">
+            <div class="card shadow col-md-12">
+                <img class="card-img-top text-center" style="height:200px;width:200px;border-radius:200px;margin:0 auto"  src="~/employees_photo/@item.EmployeeID@item.ExtName"
+                     alt="Employee Image">
+                <div class="card-body">
+                    <h5 class="card-title">@item.EmployeeName</h5>
+                    <p class="card-text">@item.Post.PostName</p>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-4">
+                        <a asp-action="Edit" class="btn btn-outline-dark btn-block" asp-route-id="@item.EmployeeID"><i class="fa fa-edit"></i> Edit</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a asp-action="Details" class="btn btn-outline-dark btn-block" asp-route-id="@item.EmployeeID"><i class="fa fa-eye"></i> Details</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a asp-action="Delete" class="btn btn-outline-dark btn-block" asp-route-id="@item.EmployeeID"><i class="fa fa-trash"></i> Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

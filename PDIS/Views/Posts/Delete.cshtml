@@ -1,0 +1,31 @@
+﻿@model PDIS.Models.Post
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="text-center">
+    <h1 class="display-4 font-text">Delete Post Details</h1>
+</div>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PostName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PostName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+        <dd class="col-sm-10">
+            $ @Html.DisplayFor(model => model.Salary) per month
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PostID" />
+        <button type="submit" class="btn btn-outline-dark"><i class="fa fa-trash"></i> Confirm Delete</button>
+    </form>
+</div>

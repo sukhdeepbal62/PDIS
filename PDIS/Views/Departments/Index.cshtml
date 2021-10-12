@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PDIS.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4 font-text">All Departments</h1>
+</div>
+
+<p>
+    <a class="btn btn-outline-dark" asp-action="Create"><i class="fa fa-paper-plane"></i> Add New Department</a>
+</p>
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-md-4  mb-3">
+
+        <div class="card-body shadow border  border-dark col-md-12">
+            <h4 class="card-title">@item.DepartmentName</h4>
+            <p class="card-text"> Total Employees: @item.Employees.Count()</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <a asp-action="Edit" class="btn btn-block btn-outline-dark" asp-route-id="@item.DepartmentID"><i class="fa fa-edit"></i> Edit</a>
+                </div>
+                <div class="col-md-6">
+                    <a asp-action="Delete" class="btn btn-block btn-outline-dark" asp-route-id="@item.DepartmentID"><i class="fa fa-trash"></i> Delete</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        }
+    </div>

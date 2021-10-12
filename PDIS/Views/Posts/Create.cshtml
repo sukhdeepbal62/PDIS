@@ -1,0 +1,34 @@
+﻿@model PDIS.Models.Post
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center">
+    <h1 class="display-4 font-text">Add New Post</h1>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PostName" class="control-label"></label>
+                <input asp-for="PostName" class="form-control" />
+                <span asp-validation-for="PostName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Salary" class="control-label"></label>
+                <input asp-for="Salary" class="form-control" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-block btn-outline-dark"><i class="fa fa-paper-plane"></i> Save Details</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

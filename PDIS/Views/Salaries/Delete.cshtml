@@ -1,0 +1,38 @@
+﻿@model PDIS.Models.Salary
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="text-center">
+    <h1 class="display-4 font-text">Delete Employee Salary Details</h1>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8  mb-3">
+        <div class="card shadow col-md-12">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Employee.EmployeeName (@Model.Employee.UserName)</h5>
+                <p class="card-text">@Model.SalaryMonth of @Model.SalaryYear</p>
+                <p class="card-text"> Total Salary: $ @Model.TotalSalary</p>
+                <p class="card-text">Salary Details:</p>
+                <ul>
+                    @foreach (var detail in Model.SalaryDetails)
+                    {
+                        <li>@detail.AllowanceName ($ @detail.Amount) </li>
+                    }
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center mb-3">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="SalaryID" />
+                        <button type="submit" class="btn btn-outline-dark"><i class="fa fa-trash"></i> Confirm Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>

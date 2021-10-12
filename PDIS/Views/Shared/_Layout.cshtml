@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PDIS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .font-text {
+            font-family: 'Fira Sans', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="font-text text-center shadow" style="color: #F44336;">Personnel Data Information System</h1>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand font-text" asp-area="" asp-controller="Home" asp-action="Index">PDIS</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark font-text" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            @if (User.IsInRole("hr"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="" asp-controller="Posts" asp-action="Index">Posts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="" asp-controller="Departments" asp-action="Index"> Departments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="" asp-controller="Allowances" asp-action="Index"> Allowances</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="" asp-controller="Employees" asp-action="Index"> Employees</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="" asp-controller="Salaries" asp-action="Index"> Salaries</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="Identity" asp-page="/Account/RegisterHR">New HRA</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="" asp-controller="Home" asp-action="MyDetails">Personal Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark font-text" asp-area="" asp-controller="Home" asp-action="ViewSalaryDetails">View Salary Details</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - PDIS
+            </div>
+        </footer>
+    }
+    else
+    {
+        @RenderBody()
+    }
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

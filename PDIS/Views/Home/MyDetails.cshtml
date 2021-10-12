@@ -1,0 +1,27 @@
+﻿@model PDIS.Models.Employee
+
+@{
+    ViewData["Title"] = "MyDetails";
+}
+
+<div class="text-center">
+    <h1 class="display-4 font-text">Personal Details</h1>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8  mb-3">
+        <div class="card shadow col-md-12">
+            <img class="card-img-top text-center" style="height:200px;width:200px;border-radius:200px;margin:0 auto" src="~/employees_photo/@Model.EmployeeID@Model.ExtName"
+                 alt="Employee Image">
+            <div class="card-body">
+                <h5 class="card-title">@Model.EmployeeName (@Model.UserName)</h5>
+                <p class="card-text">Post: @Model.Post.PostName</p>
+                <p class="card-text">Department: @Model.Department.DepartmentName</p>
+                <p class="card-text">Salary: $ @Model.BasicSalary per month</p>
+                <p class="card-text">Joining Date: @Model.JoiningDate</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
